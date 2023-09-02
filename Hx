@@ -1,0 +1,18 @@
+local antikill = false
+local time = 0.1
+
+game.Players.LocalPlayer.Chatted:Connect(function(msg)
+    local lower = msg:lower()
+    
+    if lower == ".antikill" then
+        antikill = true
+    elseif lower == ".unantikill" or lower = ".una" then
+        antikill = false
+    end
+end)
+
+while wait(time) do
+    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 and antikill then
+        game.Players:Chat("reset me")
+    end
+end
