@@ -6,7 +6,7 @@ game.Players.LocalPlayer.Chatted:Connect(function(msg)
     
     if lower == ".antikill" then
         antikill = true
-    elseif lower == ".unantikill" or lower = ".una" then
+    elseif lower == ".unantikill" or lower == ".una" then
         antikill = false
     end
 end)
