@@ -1,18 +1,31 @@
 local antikill = false
+local jail = false
+local object = "GAMERNOOBIKYT's jail"  -- Replace with the actual name of your sound object
 local time = 0.1
 
 game.Players.LocalPlayer.Chatted:Connect(function(msg)
-    local lower = msg:lower()
+    local lowerMsg = msg:lower()
     
-    if lower == ".antikill" then
+    if lowerMsg == ".antikill" then
         antikill = true
-    elseif lower == ".unantikill" or lower == ".una" then
+    elseif lowerMsg == ".unantikill" or lowerMsg == ".una" then
         antikill = false
+    elseif lowerMsg == ".antijail" then
+        jail = true
+    elseif lowerMsg == ".unantijail" or lowerMsg == ".unj" then
+        jail = false
     end
 end)
 
 while wait(time) do
-    if game.Players.LocalPlayer.Character.Humanoid.Health == 0 and antikill then
+    if antikill and game.Players.LocalPlayer.Character.Humanoid.Health == 0 then
         game.Players:Chat("reset me")
+    end
+
+    if jail then
+        local sound = game:GetService("Workspace").Terrain["_Game"].Folder:FindFirstChild(object)
+        if sound then
+            game.Players:Chat("unjail me")
+        end
     end
 end
